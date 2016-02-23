@@ -1,9 +1,5 @@
-"                        ▗     
-" ▝▀▖▙▀▖▞▀▖▞▀▖▞▀▖▞▀▘  ▌ ▌▄ ▛▚▀▖
-" ▞▀▌▌  ▌ ▖▌ ▖▌ ▌▝▀▖▗▖▐▐ ▐ ▌▐ ▌
-" ▝▀▘▘  ▝▀ ▝▀ ▝▀ ▀▀ ▝▘ ▘ ▀▘▘▝ ▘
-" =====================================
-"
+" Chameleon
+" =========
 " A 16 colors scheme that use your terminal colors
 " Inspired by 
 
@@ -14,7 +10,7 @@ if version > 580
         syntax reset
     endif
 endif
-let g:colors_name="arccos"
+let g:colors_name="chameleon"
 
 " 0:black 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:white
 
