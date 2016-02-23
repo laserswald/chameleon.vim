@@ -1,28 +1,44 @@
 " =============================================================================
-" Filename: autoload/lightline/colorscheme/powerline.vim
-" Author: itchyny
+" Filename: autoload/lightline/colorscheme/chameleon.vim
+" Author: Laserswald
 " License: MIT License
-" Last Change: 2013/09/07 15:54:41.
 " =============================================================================
+let s:blk = 0
+let s:red = 1
+let s:grn = 2
+let s:ylw = 3
+let s:blu = 4
+let s:vio = 5
+let s:cyn = 6
+let s:wht = 7
+
+let s:bblk = 8
+let s:bred = 9 
+let s:bgrn = 10
+let s:bylw = 11
+let s:bblu = 12
+let s:bvio = 13
+let s:bcyn = 14
+let s:bwht = 15
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
-let s:p.normal.left = [ ['green', 'brightgreen', 'bold'], ['white', 'black'] ]
-let s:p.normal.right = [ ['gray5', 'gray10'], ['gray9', 'gray4'], ['gray8', 'gray2'] ]
-let s:p.inactive.right = [ ['gray1', 'gray5'], ['gray4', 'gray1'], ['gray4', 'gray0'] ]
+let s:p.normal.left = [ [ s:bgrn, s:grn ], [ s:bgrn, s:bblk ] ]
+let s:p.normal.right = [ [ s:bblk , s:wht ], [ s:wht , s:bblk ], [ s:bwht, s:bblk ]]
+let s:p.inactive.right = s:p.normal.right
 let s:p.inactive.left = s:p.inactive.right[1:]
-let s:p.insert.left = [ ['darkestcyan', 'white', 'bold'], ['white', 'darkblue'] ]
-let s:p.insert.right = [ [ 'darkestcyan', 'mediumcyan' ], [ 'mediumcyan', 'darkblue' ], [ 'mediumcyan', 'darkestblue' ] ]
-let s:p.replace.left = [ ['white', 'brightred', 'bold'], ['white', 'gray4'] ]
-let s:p.visual.left = [ ['darkred', 'brightorange', 'bold'], ['white', 'gray4'] ]
-let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
-let s:p.insert.middle = [ [ 'mediumcyan', 'darkestblue' ] ]
+let s:p.insert.left = [ [ s:bblu, s:blu ], [ s:bblu, s:bblk ] ]
+let s:p.insert.right = s:p.normal.right
+let s:p.replace.left = [ [ s:bred, s:red ], [ s:bred, s:bblk ] ]
+let s:p.visual.left = [ [ s:ylw, s:bylw ], [s:bylw, s:bblk] ]
+let s:p.normal.middle = [ [ s:bblk, s:blk ] ]
+let s:p.insert.middle = s:p.normal.middle
 let s:p.replace.middle = s:p.normal.middle
 let s:p.replace.right = s:p.normal.right
-let s:p.tabline.left = [ [ 'gray9', 'gray4' ] ]
-let s:p.tabline.tabsel = [ [ 'gray9', 'gray1' ] ]
-let s:p.tabline.middle = [ [ 'gray2', 'gray8' ] ]
-let s:p.tabline.right = [ [ 'gray9', 'gray3' ] ]
+let s:p.tabline.left = [ [ s:wht , s:bblk ] ]
+let s:p.tabline.middle = [ [ s:bblk, s:blk ] ]
+let s:p.tabline.tabsel = [ [ s:bblk, s:wht ] ]
+let s:p.tabline.right = [ [ s:blk, s:red ] ]
 let s:p.normal.error = [ [ 'gray9', 'brightestred' ] ]
-let s:p.normal.warning = [ [ 'gray1', 'yellow' ] ]
+let s:p.normal.warning = [ [ 'brightblack', 'yellow' ] ]
 
-let g:lightline#colorscheme#powerline#palette = lightline#colorscheme#fill(s:p)
+let g:lightline#colorscheme#chameleon#palette = lightline#colorscheme#fill(s:p)
