@@ -1,7 +1,7 @@
 " Chameleon
 " =========
 " A 16 colors scheme that use your terminal colors
-" Inspired by 
+" Inspired by z3bra's shblah.vim 
 
 set background=dark
 if version > 580
@@ -12,10 +12,11 @@ if version > 580
 endif
 let g:colors_name="chameleon"
 
-" 0:black 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:white
+"  0:black 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:white
+"b 8:black 9:red 10:green 11:yellow 12:blue 13:purple 14:cyan 15:white
 
 " Actual colours and styles.
-highlight Comment      term=none cterm=none ctermfg=darkgrey    ctermbg=none
+highlight Comment      term=none cterm=none ctermfg=8    ctermbg=none
 
 " Constant values.
 highlight Constant     term=none cterm=none ctermfg=1    ctermbg=none
@@ -71,10 +72,10 @@ highlight Directory    term=none cterm=none ctermfg=4    ctermbg=0
 highlight Error        term=none cterm=none ctermfg=0    ctermbg=1
 highlight ErrorMsg     term=none cterm=none ctermfg=1    ctermbg=0
 highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
-highlight Folded       term=none cterm=none ctermfg=7    ctermbg=15
+highlight Folded       term=none cterm=none ctermfg=8    ctermbg=15
 highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
-highlight NonText      term=none cterm=none ctermfg=0    ctermbg=none
-highlight Normal       term=none cterm=none ctermfg=0    ctermbg=none
+highlight NonText      term=none cterm=none ctermfg=8    ctermbg=none
+highlight Normal       term=none cterm=none ctermfg=7    ctermbg=none
 highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
 highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
 highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
