@@ -74,7 +74,7 @@ highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
 highlight Folded       term=none cterm=none ctermfg=7    ctermbg=15
 highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
 highlight NonText      term=none cterm=none ctermfg=0    ctermbg=none
-highlight Normal       term=none cterm=none ctermfg=7    ctermbg=none
+highlight Normal       term=none cterm=none ctermfg=0    ctermbg=none
 highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
 highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
 highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
@@ -160,3 +160,4 @@ syn match Visual       "\"__Visual.*"
 "__Underlined           Anything underlined
 "__VertSplit            :vsplit will only show ' | '
 "__Visual               Selected text looks like this
+
