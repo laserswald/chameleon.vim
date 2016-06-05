@@ -3,7 +3,6 @@
 " A 16 colors scheme that use your terminal colors
 " Inspired by z3bra's shblah.vim 
 
-set background=dark
 if version > 580
     highlight clear
     if exists("g:syntax_on")
@@ -16,9 +15,17 @@ let g:colors_name="chameleon"
 "b 8:black 9:red 10:green 11:yellow 12:blue 13:purple 14:cyan 15:white
 
 " Actual colours and styles.
-highlight Comment      term=none cterm=none ctermfg=8    ctermbg=none
 
-" Constant values.
+" Comments are less-contrasted.
+if &background == "dark"
+    highlight Comment      term=none cterm=none ctermfg=7   ctermbg=none
+    highlight Normal       term=none cterm=none ctermfg=15    ctermbg=none
+else 
+    highlight Comment      term=none cterm=none ctermfg=8  ctermbg=none
+    highlight Normal       term=none cterm=none ctermfg=0  ctermbg=none
+endif
+
+" Constant values. (red)
 highlight Constant     term=none cterm=none ctermfg=1    ctermbg=none
 highlight String       term=none cterm=none ctermfg=1    ctermbg=none
 highlight Character    term=none cterm=none ctermfg=1    ctermbg=none
@@ -26,11 +33,11 @@ highlight Number       term=none cterm=bold ctermfg=1    ctermbg=none
 highlight Boolean      term=none cterm=bold ctermfg=1    ctermbg=none
 highlight Float        term=none cterm=bold ctermfg=1    ctermbg=none
 
-" Variables and functions.
+" Variables and functions. (yellow)
 highlight Identifier   term=none cterm=none ctermfg=3    ctermbg=none
 highlight Function     term=none cterm=bold ctermfg=3    ctermbg=none
 
-" Statement
+" Statement (green)
 highlight Statement    term=none cterm=none ctermfg=2    ctermbg=none
 highlight Conditional  term=none cterm=none ctermfg=2    ctermbg=none
 highlight Repeat       term=none cterm=none ctermfg=2    ctermbg=none
@@ -39,20 +46,20 @@ highlight Operator     term=none cterm=bold ctermfg=2    ctermbg=none
 highlight Keyword      term=none cterm=none ctermfg=2    ctermbg=none
 highlight Exception    term=none cterm=bold ctermfg=2    ctermbg=none
 
-" Macros and preprocessor stuff
+" Macros and preprocessor stuff (purple)
 highlight PreProc      term=none cterm=none ctermfg=5    ctermbg=none
 highlight Include      term=none cterm=none ctermfg=5    ctermbg=none
 highlight Define       term=none cterm=none ctermfg=5    ctermbg=none
 highlight Macro        term=none cterm=none ctermfg=5    ctermbg=none
 highlight PreCondit    term=none cterm=bold ctermfg=5    ctermbg=none
 
-" Typing 
-highlight Type         term=none cterm=bold ctermfg=5    ctermbg=none
+" Typing (blue)
+highlight Type         term=none cterm=none ctermfg=4    ctermbg=none
 highlight StorageClass term=none cterm=none ctermfg=4    ctermbg=none
 highlight Structure    term=none cterm=bold ctermfg=4    ctermbg=none
-highlight Typedef      term=none cterm=none ctermfg=4    ctermbg=none
+highlight Typedef      term=none cterm=bold ctermfg=4    ctermbg=none
 
-" Other symbols.
+" Other symbols. (cyan)
 highlight Special        term=none cterm=none ctermfg=6    ctermbg=none
 highlight SpecialChar    term=none cterm=bold ctermfg=1    ctermbg=none
 highlight Tag            term=none cterm=none ctermfg=6    ctermbg=none
@@ -68,14 +75,13 @@ highlight DiffAdd      term=none cterm=none ctermfg=2    ctermbg=none
 highlight DiffChange   term=none cterm=none ctermfg=none ctermbg=none
 highlight DiffDelete   term=none cterm=none ctermfg=7    ctermbg=1
 highlight DiffText     term=none cterm=none ctermfg=7    ctermbg=4
-highlight Directory    term=none cterm=none ctermfg=4    ctermbg=0
+highlight Directory    term=none cterm=none ctermfg=4    ctermbg=none
 highlight Error        term=none cterm=none ctermfg=0    ctermbg=1
 highlight ErrorMsg     term=none cterm=none ctermfg=1    ctermbg=0
 highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
 highlight Folded       term=none cterm=none ctermfg=8    ctermbg=15
 highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
 highlight NonText      term=none cterm=none ctermfg=8    ctermbg=none
-highlight Normal       term=none cterm=none ctermfg=7    ctermbg=none
 highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
 highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
 highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
