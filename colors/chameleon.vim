@@ -18,10 +18,10 @@ let g:colors_name="chameleon"
 
 " Comments are less-contrasted.
 if &background == "dark"
-    highlight Comment      term=none cterm=none ctermfg=7   ctermbg=none
+    highlight Comment      term=none cterm=bold ctermfg=0   ctermbg=none
     highlight Normal       term=none cterm=none ctermfg=15    ctermbg=none
 else 
-    highlight Comment      term=none cterm=none ctermfg=8  ctermbg=none
+    highlight Comment      term=none cterm=bold ctermfg=7  ctermbg=none
     highlight Normal       term=none cterm=none ctermfg=0  ctermbg=none
 endif
 
@@ -43,7 +43,7 @@ highlight Conditional  term=none cterm=none ctermfg=2    ctermbg=none
 highlight Repeat       term=none cterm=none ctermfg=2    ctermbg=none
 highlight Label        term=none cterm=bold ctermfg=2    ctermbg=none
 highlight Operator     term=none cterm=bold ctermfg=2    ctermbg=none
-highlight Keyword      term=none cterm=none ctermfg=2    ctermbg=none
+highlight Keyword      term=none cterm=bold ctermfg=2    ctermbg=none
 highlight Exception    term=none cterm=bold ctermfg=2    ctermbg=none
 
 " Macros and preprocessor stuff (purple)
@@ -81,7 +81,7 @@ highlight ErrorMsg     term=none cterm=none ctermfg=1    ctermbg=0
 highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
 highlight Folded       term=none cterm=none ctermfg=8    ctermbg=15
 highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
-highlight NonText      term=none cterm=none ctermfg=8    ctermbg=none
+highlight NonText      term=none cterm=bold ctermfg=0    ctermbg=none
 highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
 highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
 highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
