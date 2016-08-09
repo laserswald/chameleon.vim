@@ -14,37 +14,53 @@ let g:colors_name="chameleon"
 "  0:black 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:white
 "b 8:black 9:red 10:green 11:yellow 12:blue 13:purple 14:cyan 15:white
 
+" Transform the similar and contrast colors
+
+" Light background
+let s:similar = 0
+let s:bsimilar = 8
+let s:contrast = 7
+let s:bcontrast = 15
+
+if &background ==# "dark"
+    let s:similar = 7
+    let s:bsimilar = 15
+    let s:contrast = 0
+    let s:bcontrast = 8
+endif
+
+function! s:ApplyStyle(type, fg, extras)
+    let str = "hi ".a:type." ctermfg=".a:fg." ".a:extras
+    exec str
+endfunc
+
 " Actual colours and styles.
 
 " Comments are less-contrasted.
-if &background == "dark"
-    highlight Comment      term=none cterm=bold ctermfg=0   ctermbg=none
-    highlight Normal       term=none cterm=none ctermfg=15    ctermbg=none
-else 
-    highlight Comment      term=none cterm=bold ctermfg=7  ctermbg=none
-    highlight Normal       term=none cterm=none ctermfg=0  ctermbg=none
-endif
 
-" Constant values. (red)
-highlight Constant     term=none cterm=none ctermfg=1    ctermbg=none
-highlight String       term=none cterm=none ctermfg=1    ctermbg=none
-highlight Character    term=none cterm=none ctermfg=1    ctermbg=none
-highlight Number       term=none cterm=bold ctermfg=1    ctermbg=none
-highlight Boolean      term=none cterm=bold ctermfg=1    ctermbg=none
-highlight Float        term=none cterm=bold ctermfg=1    ctermbg=none
+call s:ApplyStyle("Comment", s:bsimilar, "")
+call s:ApplyStyle("Normal", s:contrast, "")
+
+" Constant values. (green)
+highlight Constant     term=none cterm=none ctermfg=3    ctermbg=none
+highlight String       term=none cterm=none ctermfg=2    ctermbg=none
+highlight Character    term=none cterm=none ctermfg=10    ctermbg=none
+highlight Number       term=none cterm=none ctermfg=11    ctermbg=none
+highlight Boolean      term=none cterm=none ctermfg=3    ctermbg=none
+highlight Float        term=none cterm=none ctermfg=10    ctermbg=none
 
 " Variables and functions. (yellow)
-highlight Identifier   term=none cterm=none ctermfg=3    ctermbg=none
-highlight Function     term=none cterm=bold ctermfg=3    ctermbg=none
+call s:ApplyStyle("Identifier", s:contrast, "cterm=bold")
+highlight Function     term=none cterm=bold ctermfg=4   ctermbg=none
 
-" Statement (green)
-highlight Statement    term=none cterm=none ctermfg=2    ctermbg=none
-highlight Conditional  term=none cterm=none ctermfg=2    ctermbg=none
-highlight Repeat       term=none cterm=none ctermfg=2    ctermbg=none
-highlight Label        term=none cterm=bold ctermfg=2    ctermbg=none
-highlight Operator     term=none cterm=bold ctermfg=2    ctermbg=none
-highlight Keyword      term=none cterm=bold ctermfg=2    ctermbg=none
-highlight Exception    term=none cterm=bold ctermfg=2    ctermbg=none
+" Statement (red)
+highlight Statement    term=none cterm=none ctermfg=9    ctermbg=none
+highlight Conditional  term=none cterm=none ctermfg=1    ctermbg=none
+highlight Repeat       term=none cterm=none ctermfg=1    ctermbg=none
+highlight Label        term=none ctermfg=1    ctermbg=none
+call s:ApplyStyle("Operator", s:contrast, "")
+highlight Keyword      term=none cterm=none ctermfg=7    ctermbg=none
+highlight Exception    term=none cterm=bold ctermfg=1    ctermbg=none
 
 " Macros and preprocessor stuff (purple)
 highlight PreProc      term=none cterm=none ctermfg=5    ctermbg=none
@@ -55,13 +71,13 @@ highlight PreCondit    term=none cterm=bold ctermfg=5    ctermbg=none
 
 " Typing (blue)
 highlight Type         term=none cterm=none ctermfg=4    ctermbg=none
-highlight StorageClass term=none cterm=none ctermfg=4    ctermbg=none
-highlight Structure    term=none cterm=bold ctermfg=4    ctermbg=none
+highlight StorageClass term=none cterm=none ctermfg=12    ctermbg=none
+highlight Structure    term=none cterm=none ctermfg=4    ctermbg=none
 highlight Typedef      term=none cterm=bold ctermfg=4    ctermbg=none
 
 " Other symbols. (cyan)
 highlight Special        term=none cterm=none ctermfg=6    ctermbg=none
-highlight SpecialChar    term=none cterm=bold ctermfg=1    ctermbg=none
+highlight SpecialChar    term=none cterm=bold ctermfg=2    ctermbg=none
 highlight Tag            term=none cterm=none ctermfg=6    ctermbg=none
 highlight Delimiter      term=none cterm=none ctermfg=6    ctermbg=none
 highlight Debug          term=none cterm=none ctermfg=6    ctermbg=none
@@ -108,6 +124,11 @@ highlight! link TabLine         StatusLineNC
 highlight! link TabLineFill     StatusLineNC
 highlight! link VimHiGroup      VimGroup
 highlight! link VimHiGroup      VimGroup
+
+highlight! link lispDecl      Define
+
+call s:ApplyStyle("lispFunc", s:bcontrast, "")
+call s:ApplyStyle("lispFunc", s:bcontrast, "")
 
 " Test the actual colorscheme
 syn match Comment      "\"__Comment.*"
