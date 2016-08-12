@@ -59,7 +59,7 @@ highlight Conditional  term=none cterm=none ctermfg=1    ctermbg=none
 highlight Repeat       term=none cterm=none ctermfg=1    ctermbg=none
 highlight Label        term=none ctermfg=1    ctermbg=none
 call s:ApplyStyle("Operator", s:contrast, "")
-highlight Keyword      term=none cterm=none ctermfg=7    ctermbg=none
+highlight Keyword      term=none cterm=none ctermfg=1    ctermbg=none
 highlight Exception    term=none cterm=bold ctermfg=1    ctermbg=none
 
 " Macros and preprocessor stuff (purple)
@@ -130,6 +130,8 @@ highlight! link lispDecl      Define
 call s:ApplyStyle("lispFunc", s:bcontrast, "")
 call s:ApplyStyle("lispFunc", s:bcontrast, "")
 
+
+
 " Test the actual colorscheme
 syn match Comment      "\"__Comment.*"
 syn match Constant     "\"__Constant.*"
@@ -143,6 +145,7 @@ syn match Folded       "\"__Folded.*"
 syn match Function     "\"__Function.*"
 syn match Identifier   "\"__Identifier.*"
 syn match IncSearch    "\"__IncSearch.*"
+syn match Keyword    "\"__Keyword.*"
 syn match NonText      "\"__NonText.*"
 syn match Normal       "\"__Normal.*"
 syn match Pmenu        "\"__Pmenu.*"
@@ -172,6 +175,7 @@ syn match Visual       "\"__Visual.*"
 "__Function             function sblah()
 "__Identifier           Never ran into that actually...
 "__IncSearch            Next search term
+"__Keyword              Default keywords
 "__NonText              This is not a text, move on
 "__Normal               Typical text goes like this
 "__Pmenu                Currently selected menu item
