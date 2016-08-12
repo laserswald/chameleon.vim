@@ -97,7 +97,7 @@ highlight ErrorMsg     term=none cterm=none ctermfg=1    ctermbg=0
 highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
 highlight Folded       term=none cterm=none ctermfg=8    ctermbg=15
 highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
-highlight NonText      term=none cterm=none ctermfg=8    ctermbg=none
+highlight NonText      term=none cterm=bold ctermfg=0    ctermbg=none
 highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
 highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
 highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
