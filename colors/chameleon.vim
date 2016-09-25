@@ -17,16 +17,17 @@ let g:colors_name="chameleon"
 " Transform the similar and contrast colors
 
 " Light background
-let s:similar = 0
-let s:bsimilar = 8
-let s:contrast = 7
-let s:bcontrast = 15
+let s:similar = 7
+let s:bsimilar = 15
+let s:contrast = 0
+let s:bcontrast = 8
 
 if &background ==# "dark"
-    let s:similar = 7
-    let s:bsimilar = 15
-    let s:contrast = 0
-    let s:bcontrast = 8
+    let s:similar = 0
+    let s:bsimilar = 8
+    let s:contrast = 7
+    let s:bcontrast = 15
+
 endif
 
 function! s:ApplyStyle(type, fg, extras)
@@ -59,7 +60,7 @@ highlight Conditional  term=none cterm=none ctermfg=1    ctermbg=none
 highlight Repeat       term=none cterm=none ctermfg=1    ctermbg=none
 highlight Label        term=none ctermfg=1    ctermbg=none
 call s:ApplyStyle("Operator", s:contrast, "")
-highlight Keyword      term=none cterm=none ctermfg=1    ctermbg=none
+highlight Keyword      term=none cterm=none ctermfg=7    ctermbg=none
 highlight Exception    term=none cterm=bold ctermfg=1    ctermbg=none
 
 " Macros and preprocessor stuff (purple)
@@ -97,7 +98,7 @@ highlight ErrorMsg     term=none cterm=none ctermfg=1    ctermbg=0
 highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
 highlight Folded       term=none cterm=none ctermfg=8    ctermbg=15
 highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
-highlight NonText      term=none cterm=bold ctermfg=0    ctermbg=none
+highlight NonText      term=none cterm=none ctermfg=8    ctermbg=none
 highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
 highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
 highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
@@ -130,8 +131,6 @@ highlight! link lispDecl      Define
 call s:ApplyStyle("lispFunc", s:bcontrast, "")
 call s:ApplyStyle("lispFunc", s:bcontrast, "")
 
-
-
 " Test the actual colorscheme
 syn match Comment      "\"__Comment.*"
 syn match Constant     "\"__Constant.*"
@@ -145,7 +144,6 @@ syn match Folded       "\"__Folded.*"
 syn match Function     "\"__Function.*"
 syn match Identifier   "\"__Identifier.*"
 syn match IncSearch    "\"__IncSearch.*"
-syn match Keyword    "\"__Keyword.*"
 syn match NonText      "\"__NonText.*"
 syn match Normal       "\"__Normal.*"
 syn match Pmenu        "\"__Pmenu.*"
@@ -175,7 +173,6 @@ syn match Visual       "\"__Visual.*"
 "__Function             function sblah()
 "__Identifier           Never ran into that actually...
 "__IncSearch            Next search term
-"__Keyword              Default keywords
 "__NonText              This is not a text, move on
 "__Normal               Typical text goes like this
 "__Pmenu                Currently selected menu item
