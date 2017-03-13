@@ -1,7 +1,7 @@
 " Chameleon
 " =========
 " A 16 colors scheme that use your terminal colors
-" Inspired by z3bra's shblah.vim 
+" Inspired by z3bra's shblah.vim
 
 if version > 580
     highlight clear
@@ -11,14 +11,30 @@ if version > 580
 endif
 let g:colors_name="chameleon"
 
-"  0:black 1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:white
-"b 8:black 9:red 10:green 11:yellow 12:blue 13:purple 14:cyan 15:white
+
+let s:red = "1"
+let s:green = "2"
+let s:yellow = "3"
+let s:blue = "4"
+let s:purple = "5"
+let s:cyan = "6"
+
+let s:bred = "9"
+let s:bgreen = "10"
+let s:byellow = "11"
+let s:bblue = "12"
+let s:bpurple = "13"
+let s:bcyan = "14"
+
 
 " Transform the similar and contrast colors
+" Similar is the shade closely matching the background
+" Contrast is the opposite
+" bright of either is the easier shade to see
 
-" Light background
-let s:similar = 7
-let s:bsimilar = 15
+" Light backgrounds
+let s:similar = 15
+let s:bsimilar = 7
 let s:contrast = 0
 let s:bcontrast = 8
 
@@ -30,88 +46,73 @@ if &background ==# "dark"
 
 endif
 
-function! s:ApplyStyle(type, fg, extras)
-    let str = "hi ".a:type." ctermfg=".a:fg." ".a:extras
+function! s:ApplyStyle(type, ...)
+    let str = "highlight ".a:type
+    for o in a:000
+        let str = str." ".o
+    endfor
     exec str
 endfunc
 
 " Actual colours and styles.
 
 " Comments are less-contrasted.
+call s:ApplyStyle("Comment", "ctermfg=".s:bsimilar)
 
-call s:ApplyStyle("Comment", s:bsimilar, "")
-call s:ApplyStyle("Normal", s:contrast, "")
+" Constants
+call s:ApplyStyle("Constant", "ctermfg=".s:green)
+call s:ApplyStyle("String", "ctermfg=".s:bgreen)
+call s:ApplyStyle("Character", "ctermfg=".s:bgreen)
+call s:ApplyStyle("SpecialChar", "ctermfg=".s:green)
 
-" Constant values. (green)
-highlight Constant     term=none cterm=none ctermfg=3    ctermbg=none
-highlight String       term=none cterm=none ctermfg=2    ctermbg=none
-highlight Character    term=none cterm=none ctermfg=10    ctermbg=none
-highlight Number       term=none cterm=none ctermfg=11    ctermbg=none
-highlight Boolean      term=none cterm=none ctermfg=3    ctermbg=none
-highlight Float        term=none cterm=none ctermfg=10    ctermbg=none
+" Variables
+call s:ApplyStyle("Identifier", "cterm=none", "ctermfg=".s:bcontrast)
 
-" Variables and functions. (yellow)
-call s:ApplyStyle("Identifier", s:contrast, "cterm=bold")
-highlight Function     term=none cterm=bold ctermfg=4   ctermbg=none
+" Functions
+call s:ApplyStyle("Function", "ctermfg=".s:yellow, "cterm=italic")
 
-" Statement (red)
-highlight Statement    term=none cterm=none ctermfg=9    ctermbg=none
-highlight Conditional  term=none cterm=none ctermfg=1    ctermbg=none
-highlight Repeat       term=none cterm=none ctermfg=1    ctermbg=none
-highlight Label        term=none ctermfg=1    ctermbg=none
-call s:ApplyStyle("Operator", s:contrast, "")
-highlight Keyword      term=none cterm=none ctermfg=7    ctermbg=none
-highlight Exception    term=none cterm=bold ctermfg=1    ctermbg=none
+" Statements
+call s:ApplyStyle("Statement", "ctermfg=".s:bred)
+call s:ApplyStyle("Conditional", "ctermfg=".s:red)
+call s:ApplyStyle("Repeat", "ctermfg=".s:red)
 
-" Macros and preprocessor stuff (purple)
-highlight PreProc      term=none cterm=none ctermfg=5    ctermbg=none
-highlight Include      term=none cterm=none ctermfg=5    ctermbg=none
-highlight Define       term=none cterm=none ctermfg=5    ctermbg=none
-highlight Macro        term=none cterm=none ctermfg=5    ctermbg=none
-highlight PreCondit    term=none cterm=bold ctermfg=5    ctermbg=none
+" Macros
+call s:ApplyStyle("PreProc", "ctermfg=".s:bpurple)
+call s:ApplyStyle("Define", "ctermfg=".s:purple)
+call s:ApplyStyle("Macro", "ctermfg=".s:purple)
 
-" Typing (blue)
-highlight Type         term=none cterm=none ctermfg=4    ctermbg=none
-highlight StorageClass term=none cterm=none ctermfg=12    ctermbg=none
-highlight Structure    term=none cterm=none ctermfg=4    ctermbg=none
-highlight Typedef      term=none cterm=bold ctermfg=4    ctermbg=none
+" Types
+call s:ApplyStyle("Type", "ctermfg=".s:blue)
+call s:ApplyStyle("StorageClass", "ctermfg=".s:bblue)
+call s:ApplyStyle("Structure", "ctermfg=".s:bblue)
 
-" Other symbols. (cyan)
-highlight Special        term=none cterm=none ctermfg=6    ctermbg=none
-highlight SpecialChar    term=none cterm=bold ctermfg=2    ctermbg=none
-highlight Tag            term=none cterm=none ctermfg=6    ctermbg=none
-highlight Delimiter      term=none cterm=none ctermfg=6    ctermbg=none
-highlight Debug          term=none cterm=none ctermfg=6    ctermbg=none
-highlight SpecialComment term=none cterm=none ctermfg=6    ctermbg=none
+" Other
+call s:ApplyStyle("Special", "ctermfg=".s:cyan)
+call s:ApplyStyle("Tag", "ctermfg=".s:bcyan)
 
+" Display
+call s:ApplyStyle("ColorColumn", "ctermbg=".s:yellow)
+call s:ApplyStyle("CursorLine", "ctermbg=".s:similar)
+call s:ApplyStyle("Directory", "ctermfg=".s:blue, "cterm=bold")
+call s:ApplyStyle("Error", "ctermfg=".s:similar, "ctermbg=".s:red)
+call s:ApplyStyle("ErrorMsg", "ctermfg=".s:red, "ctermbg=".s:similar)
+call s:ApplyStyle("FoldColumn", "ctermfg=".s:red)
+call s:ApplyStyle("Folded", "ctermfg=".s:bsimilar, "ctermbg=".s:bcontrast)
 
-highlight ColorColumn  term=none cterm=none ctermfg=none ctermbg=3
-highlight Cursor       term=none cterm=none ctermfg=3    ctermbg=none
-highlight CursorLine   term=none cterm=none ctermfg=none ctermbg=none
-highlight DiffAdd      term=none cterm=none ctermfg=2    ctermbg=none
-highlight DiffChange   term=none cterm=none ctermfg=none ctermbg=none
-highlight DiffDelete   term=none cterm=none ctermfg=7    ctermbg=1
-highlight DiffText     term=none cterm=none ctermfg=7    ctermbg=4
-highlight Directory    term=none cterm=none ctermfg=4    ctermbg=none
-highlight Error        term=none cterm=none ctermfg=0    ctermbg=1
-highlight ErrorMsg     term=none cterm=none ctermfg=1    ctermbg=0
-highlight FoldColumn   term=none cterm=none ctermfg=0    ctermbg=none
-highlight Folded       term=none cterm=none ctermfg=8    ctermbg=15
-highlight IncSearch    term=none cterm=none ctermfg=0    ctermbg=5
-highlight NonText      term=none cterm=none ctermfg=8    ctermbg=none
-highlight Pmenu        term=none cterm=none ctermfg=0    ctermbg=7
-highlight Search       term=none cterm=none ctermfg=7    ctermbg=5
-highlight SpecialKey   term=none cterm=none ctermfg=0    ctermbg=none
+call s:ApplyStyle("Search", "ctermfg=".s:similar, "ctermbg=".s:bsimilar, "cterm=none")
+call s:ApplyStyle("IncSearch", "ctermfg=".s:yellow, "ctermbg=".s:bsimilar, "cterm=none")
+call s:ApplyStyle("NonText", "ctermfg=".s:similar, "cterm=none")
 
-highlight StatusLine   term=none cterm=none ctermfg=0    ctermbg=4
-highlight StatusLineNC term=none cterm=bold ctermfg=7    ctermbg=0
+" Popup menu
+call s:ApplyStyle("Pmenu", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar)
+call s:ApplyStyle("PmenuSel", "ctermfg=".s:bsimilar, "ctermbg=".s:contrast, "cterm=none")
+call s:ApplyStyle("PmenuSbar", "ctermfg=".s:similar, "cterm=none")
+call s:ApplyStyle("PmenuThumb", "ctermfg=".s:similar, "cterm=none")
 
-highlight TabLineSel   term=none cterm=none ctermfg=7    ctermbg=none
-highlight Todo         term=none cterm=none ctermfg=3    ctermbg=1
-highlight Underlined   term=underline cterm=underline ctermfg=none   ctermbg=none
-highlight VertSplit    term=none cterm=none ctermfg=6    ctermbg=0
-highlight Visual       term=none cterm=none ctermfg=0    ctermbg=7
-highlight WarningMsg   term=none cterm=none ctermfg=3    ctermbg=none
+" Borders around the splits
+call s:ApplyStyle("StatusLine", "ctermfg=".s:similar, "ctermbg=".s:contrast, "cterm=none")
+call s:ApplyStyle("StatusLineNC", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar, "cterm=none")
+call s:ApplyStyle("VertSplit", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar, "cterm=none")
 
 " General highlighting group links.
 highlight! link diffAdded       DiffAdd
@@ -126,10 +127,7 @@ highlight! link TabLineFill     StatusLineNC
 highlight! link VimHiGroup      VimGroup
 highlight! link VimHiGroup      VimGroup
 
-highlight! link lispDecl      Define
-
-call s:ApplyStyle("lispFunc", s:bcontrast, "")
-call s:ApplyStyle("lispFunc", s:bcontrast, "")
+call s:ApplyStyle("lispFunc", "ctermfg=".s:bcontrast)
 
 " Test the actual colorscheme
 syn match Comment      "\"__Comment.*"
@@ -140,13 +138,17 @@ syn match DiffAdd      "\"__DiffAdd.*"
 syn match DiffChange   "\"__DiffChange.*"
 syn match DiffText     "\"__DiffText.*"
 syn match DiffDelete   "\"__DiffDelete.*"
+syn match Error        "\"__Error.*"
+syn match ErrorMsg     "\"__ErrorMsg.*"
 syn match Folded       "\"__Folded.*"
+syn match FoldColumn   "\"__FoldColumn.*"
 syn match Function     "\"__Function.*"
 syn match Identifier   "\"__Identifier.*"
 syn match IncSearch    "\"__IncSearch.*"
 syn match NonText      "\"__NonText.*"
 syn match Normal       "\"__Normal.*"
 syn match Pmenu        "\"__Pmenu.*"
+syn match PmenuSel     "\"__PmenuSel.*"
 syn match PreProc      "\"__PreProc.*"
 syn match Search       "\"__Search.*"
 syn match Special      "\"__Special.*"
@@ -169,13 +171,17 @@ syn match Visual       "\"__Visual.*"
 "__DiffChange           line changed from file.orig
 "__DiffText             actual changes on this line
 "__DiffDelete           -line removed from file.orig
+"__Error                Error!
+"__ErrorMsg             +--- 1 line : Folded line ---
 "__Folded               +--- 1 line : Folded line ---
+"__FoldColumn               +--- 1 line : Folded line ---
 "__Function             function sblah()
 "__Identifier           Never ran into that actually...
 "__IncSearch            Next search term
 "__NonText              This is not a text, move on
 "__Normal               Typical text goes like this
-"__Pmenu                Currently selected menu item
+"__PmenuSel             Currently selected menu item
+"__Pmenu                Not currently selected menu item
 "__PreProc              #define SHBLAH true
 "__Search               This is what you're searching for
 "__Special              true false NULL SIGTERM
