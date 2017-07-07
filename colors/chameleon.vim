@@ -11,20 +11,19 @@ if version > 580
 endif
 let g:colors_name="chameleon"
 
+let s:red = "9"
+let s:green = "10"
+let s:yellow = "11"
+let s:blue = "12"
+let s:purple = "13"
+let s:cyan = "14"
 
-let s:red = "1"
-let s:green = "2"
-let s:yellow = "3"
-let s:blue = "4"
-let s:purple = "5"
-let s:cyan = "6"
-
-let s:bred = "9"
-let s:bgreen = "10"
-let s:byellow = "11"
-let s:bblue = "12"
-let s:bpurple = "13"
-let s:bcyan = "14"
+let s:bred = "1"
+let s:bgreen = "2"
+let s:byellow = "3"
+let s:bblue = "4"
+let s:bpurple = "5"
+let s:bcyan = "6"
 
 
 " Transform the similar and contrast colors
@@ -39,6 +38,22 @@ let s:contrast = 0
 let s:bcontrast = 8
 
 if &background ==# "dark"
+
+    let s:red = "1"
+    let s:green = "2"
+    let s:yellow = "3"
+    let s:blue = "4"
+    let s:purple = "5"
+    let s:cyan = "6"
+
+    let s:bred = "9"
+    let s:bgreen = "10"
+    let s:byellow = "11"
+    let s:bblue = "12"
+    let s:bpurple = "13"
+    let s:bcyan = "14"
+
+
     let s:similar = 0
     let s:bsimilar = 8
     let s:contrast = 7
@@ -66,29 +81,31 @@ call s:ApplyStyle("Character", "ctermfg=".s:bgreen)
 call s:ApplyStyle("SpecialChar", "ctermfg=".s:green)
 
 " Variables
-call s:ApplyStyle("Identifier", "cterm=none", "ctermfg=".s:bcontrast)
+call s:ApplyStyle("Identifier", "ctermfg=".s:bcontrast, "cterm=none")
 
 " Functions
-call s:ApplyStyle("Function", "ctermfg=".s:yellow, "cterm=italic")
+call s:ApplyStyle("Function", "ctermfg=".s:contrast, "cterm=none")
 
 " Statements
-call s:ApplyStyle("Statement", "ctermfg=".s:bred)
-call s:ApplyStyle("Conditional", "ctermfg=".s:red)
-call s:ApplyStyle("Repeat", "ctermfg=".s:red)
+call s:ApplyStyle("Statement", "ctermfg=".s:red)
+call s:ApplyStyle("Keyword", "ctermfg=".s:bred)
+call s:ApplyStyle("Conditional", "ctermfg=".s:bred)
+call s:ApplyStyle("Repeat", "ctermfg=".s:bred)
 
 " Macros
-call s:ApplyStyle("PreProc", "ctermfg=".s:bpurple)
-call s:ApplyStyle("Define", "ctermfg=".s:purple)
+call s:ApplyStyle("PreProc", "ctermfg=".s:purple)
+call s:ApplyStyle("Define", "ctermfg=".s:bpurple)
 call s:ApplyStyle("Macro", "ctermfg=".s:purple)
 
 " Types
 call s:ApplyStyle("Type", "ctermfg=".s:blue)
-call s:ApplyStyle("StorageClass", "ctermfg=".s:bblue)
+call s:ApplyStyle("StorageClass", "ctermfg=".s:similar)
 call s:ApplyStyle("Structure", "ctermfg=".s:bblue)
 
 " Other
-call s:ApplyStyle("Special", "ctermfg=".s:cyan)
+call s:ApplyStyle("Special", "ctermfg=".s:contrast)
 call s:ApplyStyle("Tag", "ctermfg=".s:bcyan)
+call s:ApplyStyle("Operator", "ctermfg=".s:bsimilar)
 
 " Display
 call s:ApplyStyle("ColorColumn", "ctermbg=".s:yellow)
@@ -98,9 +115,11 @@ call s:ApplyStyle("Error", "ctermfg=".s:similar, "ctermbg=".s:red)
 call s:ApplyStyle("ErrorMsg", "ctermfg=".s:red, "ctermbg=".s:similar)
 call s:ApplyStyle("FoldColumn", "ctermfg=".s:red)
 call s:ApplyStyle("Folded", "ctermfg=".s:bsimilar, "ctermbg=".s:bcontrast)
+call s:ApplyStyle("LineNr", "ctermfg=".s:similar, "ctermbg=".s:contrast)
 
-call s:ApplyStyle("Search", "ctermfg=".s:similar, "ctermbg=".s:bsimilar, "cterm=none")
-call s:ApplyStyle("IncSearch", "ctermfg=".s:yellow, "ctermbg=".s:bsimilar, "cterm=none")
+
+call s:ApplyStyle("Search", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar, "cterm=none")
+call s:ApplyStyle("IncSearch", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar, "cterm=bold")
 call s:ApplyStyle("NonText", "ctermfg=".s:similar, "cterm=none")
 
 " Popup menu
@@ -113,6 +132,18 @@ call s:ApplyStyle("PmenuThumb", "ctermfg=".s:similar, "cterm=none")
 call s:ApplyStyle("StatusLine", "ctermfg=".s:similar, "ctermbg=".s:contrast, "cterm=none")
 call s:ApplyStyle("StatusLineNC", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar, "cterm=none")
 call s:ApplyStyle("VertSplit", "ctermfg=".s:contrast, "ctermbg=".s:bsimilar, "cterm=none")
+
+" Quickfix
+call s:ApplyStyle("QuickFixLine", "ctermbg=".s:bsimilar, "cterm=bold")
+call s:ApplyStyle("qfFileName", "ctermfg=".s:blue, "cterm=none")
+call s:ApplyStyle("qfLineNr", "ctermfg=".s:yellow, "cterm=none")
+call s:ApplyStyle("qfSeperator", "ctermfg=".s:similar, "ctermbg=".s:bsimilar, "cterm=none")
+
+call s:ApplyStyle("DiffAdd",    "ctermbg=".s:bgreen, "ctermfg=".s:similar, "cterm=none")
+call s:ApplyStyle("DiffDelete", "ctermbg=".s:bred,   "ctermfg=".s:similar,"cterm=none")
+call s:ApplyStyle("DiffChange", "ctermbg=".s:similar, "ctermfg=".s:bsimilar, "cterm=none")
+call s:ApplyStyle("DiffText",   "ctermbg=".s:similar, "ctermfg=".s:blue, "cterm=bold")
+
 
 " General highlighting group links.
 highlight! link diffAdded       DiffAdd
